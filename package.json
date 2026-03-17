@@ -1,0 +1,33 @@
+{
+  "name": "consumet-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": {
+    "@consumet/extensions": "^1.8.8",
+    "express": "^4.18.2"
+  }
+}
+```
+4. Click **Commit changes**
+
+**Step 3 — Create `index.js`**
+1. Click **"Add file" → "Create new file"**
+2. Name it `index.js`
+3. Paste the code I gave above
+4. Click **Commit changes**
+
+**Step 4 — Deploy on Render**
+1. Go to [render.com](https://render.com) → **New → Web Service**
+2. Connect your `consumet-server` repo
+3. Set:
+   - Runtime: **Node**
+   - Build Command: `npm install`
+   - Start Command: `npm start`
+   - Instance: **Free**
+4. Click **Deploy**
+
+**Step 5 — Test it**
+Once deployed, open:
+```
+https://your-service-name.onrender.com/anime/gogoanime/naruto
