@@ -1,6 +1,7 @@
- import { ANIME } from '@consumet/extensions';
+import pkg from '@consumet/extensions';
 import express from 'express';
 
+const { ANIME } = pkg;
 const app = express();
 const gogoanime = new ANIME.Gogoanime();
 
@@ -22,13 +23,15 @@ app.get('/anime/gogoanime/info/:id', async (req, res) => {
   }
 });
 
-app.get('/anime/gogoanime/watch/:id', async (req, res) => {
+app.get('/anime/gogoanime/watch/:episodeId', async (req, res) => {
   try {
-    const data = await gogoanime.fetchEpisodeSources(req.params.id);
+    const data = await gogoanime.fetchEpisodeSources(req.params.episodeId);
     res.json(data);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
-app.listen(process.env.PORT || 3000, () => console.log('Server running on port ' + (process.env.PORT || 3000)));
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Server running on port ' + (process.env.PORT || 3000));
+});
