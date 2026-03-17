@@ -1,7 +1,8 @@
- const consumet = require('@consumet/extensions');
-const express = require('express');
+ import { ANIME } from '@consumet/extensions';
+import express from 'express';
+
 const app = express();
-const gogoanime = new consumet.ANIME.Gogoanime();
+const gogoanime = new ANIME.Gogoanime();
 
 app.get('/anime/gogoanime/:query', async (req, res) => {
   try {
