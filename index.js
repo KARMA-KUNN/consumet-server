@@ -1,24 +1,15 @@
 import express from 'express';
-
 const app = express();
 
-async function getProvider() {
-  const mod = await import('@consumet/extensions');
-  const keys = Object.keys(mod);
-  console.log('Module keys:', keys);
-  return mod;
-}
-
 app.get('/test', async (req, res) => {
-  const mod = await getProvider();
-  res.json({ keys: Object.keys(mod) });
+  try {
+    const mod = await import('@consumet/extensions');
+    res.json({ keys: Object.keys(mod) });
+  } catch (e) {
+    res.json({ error: e.message });
+  }
 });
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log('Server running on port ' + (process.env.PORT || 3000));
+  console.log('Running on ' + (process.env.PORT || 3000));
 });
-```
-
-Commit → Manual Deploy → once it's live open:
-```
-https://consumet-server.onrender.com/test
