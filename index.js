@@ -2,29 +2,29 @@
 const app = express();
 
 const { ANIME } = await import('@consumet/extensions');
-const hianime = new ANIME.Hianime();
+const provider = new ANIME.AnimeKai();
 
-app.get('/anime/hianime/:query', async (req, res) => {
+app.get('/anime/search/:query', async (req, res) => {
   try {
-    const data = await hianime.search(req.params.query);
+    const data = await provider.search(req.params.query);
     res.json(data);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
-app.get('/anime/hianime/info/:id', async (req, res) => {
+app.get('/anime/info/:id', async (req, res) => {
   try {
-    const data = await hianime.fetchAnimeInfo(req.params.id);
+    const data = await provider.fetchAnimeInfo(req.params.id);
     res.json(data);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
-app.get('/anime/hianime/watch/:episodeId', async (req, res) => {
+app.get('/anime/watch/:episodeId', async (req, res) => {
   try {
-    const data = await hianime.fetchEpisodeSources(req.params.episodeId);
+    const data = await provider.fetchEpisodeSources(req.params.episodeId);
     res.json(data);
   } catch (e) {
     res.status(500).json({ error: e.message });
