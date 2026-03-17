@@ -1,7 +1,7 @@
-const { ANIME } = require('@consumet/extensions');
+const { Gogoanime } = require('@consumet/extensions/dist/providers/anime');
 const express = require('express');
 const app = express();
-const gogoanime = new ANIME.Gogoanime();
+const gogoanime = new Gogoanime();
 
 app.get('/anime/gogoanime/:query', async (req, res) => {
   try {
@@ -30,4 +30,5 @@ app.get('/anime/gogoanime/watch/:id', async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 3000, () => console.log('Server running'));
+app.listen(process.env.PORT || 3000, () => console.log('Server running on port ' + (process.env.PORT || 3000)));
+   
