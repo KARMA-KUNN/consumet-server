@@ -1,11 +1,10 @@
- import express from 'express';
+import express from 'express';
 const app = express();
-
-const { ANIME } = await import('@consumet/extensions');
-const provider = new ANIME.AnimeKai();
 
 app.get('/anime/search/:query', async (req, res) => {
   try {
+    const mod = await import('@consumet/extensions');
+    const provider = new mod.ANIME.Gogoanime();
     const data = await provider.search(req.params.query);
     res.json(data);
   } catch (e) {
@@ -15,6 +14,8 @@ app.get('/anime/search/:query', async (req, res) => {
 
 app.get('/anime/info/:id', async (req, res) => {
   try {
+    const mod = await import('@consumet/extensions');
+    const provider = new mod.ANIME.Gogoanime();
     const data = await provider.fetchAnimeInfo(req.params.id);
     res.json(data);
   } catch (e) {
@@ -24,6 +25,8 @@ app.get('/anime/info/:id', async (req, res) => {
 
 app.get('/anime/watch/:episodeId', async (req, res) => {
   try {
+    const mod = await import('@consumet/extensions');
+    const provider = new mod.ANIME.Gogoanime();
     const data = await provider.fetchEpisodeSources(req.params.episodeId);
     res.json(data);
   } catch (e) {
